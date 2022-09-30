@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.junit5;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -29,11 +28,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
+import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 
 @WebAppConfiguration
 @ContextConfiguration(classes = SampleJUnit5Application.class)
@@ -53,9 +52,10 @@ public class SampleJUnit5ApplicationTests {
 
     @Test
     public void sample() throws Exception {
-        this.mockMvc.perform(get("/"))
+        this.mockMvc
+                .perform(get("/"))
                 .andExpect(status().isOk())
-                .andDo(document("sample"));
+                .andDo(document("sample", resource("Create a sample")));
     }
 
 }

@@ -2,6 +2,7 @@ plugins {
     id "eclipse"
     id "java"
     id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id 'com.epages.restdocs-api-spec' version '0.16.0'
 }
 
 repositories {
@@ -34,12 +35,28 @@ dependencies {
 
     implementation platform("org.springframework:spring-framework-bom:6.0.0-M5")
     implementation 'org.springframework:spring-webmvc'
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+// https://mvnrepository.com/artifact/com.epages/restdocs-api-spec
+    implementation "com.epages:restdocs-api-spec:0.16.0"
+// https://mvnrepository.com/artifact/com.epages/restdocs-api-spec-mockmvc
+    implementation "com.epages:restdocs-api-spec-mockmvc:0.16.0"
 
+//    testCompile "com.epages:restdocs-api-spec-mockmvc:0.16.0"
     testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc:$restdocsVersion"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.0'
 
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.0'
 }
+
+//openapi { //2.3
+//    host = 'localhost:8080'
+//    basePath = '/api'
+//    title = 'My API'
+//    description = 'My API description'
+//    tagDescriptionsPropertiesFile = 'src/docs/tag-descriptions.yaml'
+//    version = '1.0.0'
+//    format = 'json'
+//}
 
 test {
     outputs.dir snippetsDir
