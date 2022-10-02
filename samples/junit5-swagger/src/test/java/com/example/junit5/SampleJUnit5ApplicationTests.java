@@ -32,6 +32,7 @@ import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.docume
 import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebAppConfiguration
@@ -58,4 +59,11 @@ public class SampleJUnit5ApplicationTests {
                 .andDo(document("sample", resource("Create a sample")));
     }
 
+    @Test
+    void create() throws Exception {
+        this.mockMvc
+                .perform(post("/demo/1"))
+                .andExpect(status().isOk())
+                .andDo(document("demo-create", resource("Create a demo")));
+    }
 }

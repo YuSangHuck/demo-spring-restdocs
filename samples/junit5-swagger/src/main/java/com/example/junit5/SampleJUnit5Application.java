@@ -17,20 +17,37 @@
 package com.example.junit5;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Configuration
 public class SampleJUnit5Application {
 
-	@RestController
-	private static class SampleController {
+    @RestController
+    private static class SampleController {
 
-		@RequestMapping("/")
-		public String index() {
-			return "Hello, World";
-		}
+        @RequestMapping("/")
+        public String index() {
+            return "Hello, World";
+        }
 
-	}
+    }
+
+    @RestController
+    @RequestMapping("/demo")
+    private static class DemoRest {
+
+        @PostMapping("/{id}")
+        public void create(@PathVariable Long id) {
+        }
+
+//        @GetMapping("/{id}")
+//        public Long read(@PathVariable Long id) {
+//            return id;
+//        }
+    }
+
 
 }
