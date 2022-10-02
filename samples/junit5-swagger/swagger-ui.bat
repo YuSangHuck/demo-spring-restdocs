@@ -1,0 +1,1 @@
+docker run -d --name swagger -p 80:8080  -e TZ=Asia/Seoul -e URLS_PRIMARY_NAME=SpringRestdocs -e URLS="[ { url: 'docs/swagger.json', name: 'Swagger' } \, { url: 'docs/restdocs.json', name: 'SpringRestdocs' } ]" -v C:\docker\swagger:/usr/share/nginx/html/docs/ swaggerapi/swagger-ui
